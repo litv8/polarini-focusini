@@ -1,9 +1,0 @@
-flask
-opencv-python-headless
-numpy
-scipy
-matplotlib
-onnxruntime
-requests
-tqdm
-platformdirs
