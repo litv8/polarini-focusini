@@ -29,7 +29,7 @@ source venv/bin/activate
 
 3.7 Установить pip install scipy opencv-python-headless numpy requests onnxruntime platformdirs tqdm matplotlib pillow yandexcloud
 
-3.8 Аналогично подключаемся ко второй ВМ более умной, только без пункта 3.5 там менять MAIN_SERVER_URL = 'http://89.169.178.31:5000' # Основной сервер
+3.8 Аналогично подключаемся ко второй ВМ более умной, только без пункта 3.5 там менять MAIN_SERVER_URL = 'http://89.169.178.31:5000' # Основной сервер файл называется worker_app.py
 
 
 3.9 Заходим в меню облако и выбираем "Сервисные акаунты"
