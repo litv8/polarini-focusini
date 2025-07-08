@@ -16,6 +16,20 @@
 3.2 Переходим на страницу ВМ и находим строчку ssh -l ivanl 89.169.178.31,  подключаемся к ВМ, в начале для основного сервера (тупого)
 3.3 создаем папку flask_project и внутри папки results uploads
 3.4 создаем templates/index.html 
-3.5 создаем app.py     WORKER_ID = 'epdjglk628mh5mmjuu30'  # ID worker сервера                 меняем на свои значения со страницы ВМ 
-                       MAIN_SERVER_IP = '89.169.178.31'    # Публичный IP основного сервера
-3.6 
+3.5 создаем app.py меняем на свои значения со страницы ВМ 
+
+WORKER_ID = 'epdjglk628mh5mmjuu30'  # ID worker сервера                 
+MAIN_SERVER_IP = '89.169.178.31'    # Публичный IP основного сервера
+
+3.6 запустить виртуальное окружение 
+
+python3 -m venv venv
+source venv/bin/activate
+
+3.7 Установить pip install scipy opencv-python-headless numpy requests onnxruntime platformdirs tqdm matplotlib pillow yandexcloud
+
+
+3.8 Аналогично подключаемся ко второй ВМ более умной, только без пункта 3.5 там менять нечего
+
+4.1 Запускаем тупой сервер командой python app.py и переходим по адресу http://<Публичный IPv4-адрес>:5000/
+надеюсь ура все работает 
