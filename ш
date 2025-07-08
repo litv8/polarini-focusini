@@ -50,6 +50,22 @@ nano ~/.yc/service-account-key.json
   "private_key": "(Вот от сюда удалить строку)-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDPiJtxWKpR1lOm\nSvsyyveoXhi1TT1Ny+Hq6Msn5AmjGTSWvRMHi+Zmd72NPL3tCe0HCTGcsTOjEzxi\n0KRJqC9pwTNe/0VvCEH6oVP+KKcQuu+5dsQP6S/V/3wciz1xmruOU9AYFSrOuEwk\nwAL1S+xIticTf4QcDahKr52/TtufP1SC0WgSKnEzTAQPP1S+bp7Ouwf0+2QIK+qw\nDlGIHmpKBaPeTyBOrYUI0mTQEy48okQYlP/cettNyo3kJmt15ygr1g0coRYNrDkA\nqiyszOpTmUQ9KIGzBUkwgIzOWi+WXkDvCec/K9LOwqHJmRqeJeSKQCg+w/Tdc3CV\n6Cu2RL2zAgMBAAECggEAEbGYax//mW2YASgIZaq3VbP8EE0PCnh1APWrCHIhPjYS\nbT2ehziuwpK35vhESxbbDgwDHlRfTiqALf6S2zLLJA2URyelcFN4aJljk1o88Ci3\n8oyFJ8QeT3TyTG60pOBn2DkeF0eKuEgvObzjI62+7e4Vw8xN46RockGpxds/z0JM\nIYO2lYYraYZaARv1xPnmu+gBZJMJa/QPF9WXgX27f8jVEj3Myk8LcIXJJwWo1e3T\nBbC6ao7+m/YAfiNUeoocr3sL3pL0cuc6u+1xedf9nV3jMN1XsSvlB3/qhDFwFRVe\n2pWjmGpttJssEQm465BuPEN1ZVKkbHxyK+uaGWTlMQKBgQDaCmyOWkJsF3S6LSO4\nb9wlj798cNxQFFIzCU3uaOFy3l8SmaxTNuFiPMmjmcAldJjYnRXesovyHA9zVrvM\nUkhrZZlpjsnOiUrnfmtI8DdSBC6EVYdpF3qntO0o5vKZE6/mSonzSY6CgvQCKpe8\ntgRMcq8tFWMPKGnr20orK5G9wwKBgQDzqefnebLgK/TQ6ArwXD2WvOAiCvCY48UN\nT3CJSI3DsV5GibXWIwHSUTCPsXzk7Qa95907W5RepaREK5s0altO2y/0XnOmdJxw\nOLmRXkXC8vWGfDAcIoNcE1Ka2xrg3qjzWekplc+dW6RxBBv3Gqx5KDBYwICuxGoj\na7Vj/J9RUQKBgGlCWwGlxScVc75lCDeDmM1xRcm3WkQ2azBEL6EGdL/VZiQ+l5hc\niBW6rsUR9laeoSMBQouNuk2ZCkRt/J84oclm9NamnfndAZIbz4MYpDwt1J8CAyrS\nsN3BVDRIuZj4jhQoq8wNGIUc3tsk4LezTwPw4WxsRLQOmIPKC1Yn5GWtAoGBAMWO\nrIfxFCbNfOEkQjo/j2/4E4GGfSx4//uavRORz98qn9VxMg08tO1hBo56yViTFTRE\nGgtWZSWYB2d+M4h78ywsauUm7322bmBOnaZPWSCG/KrdZeRp1zeAMyl7HH/WCAXG\nkFU3Me3Tr7AyNLpU1iIlg41yBuOsPKIbYiZ/XG0BAoGBALBz4CQ0aiIyHadlCj6u\nKuMA+2ys5L8r8GR9aDFlvnrx+GpwjptKZX++GDQvUhxjGNHUuf0qfKKjvbXfWYcT\nrJMz46oIR/dCDtmAVDjPsKeg/pM4iKlF/JX1HOKRSEgDwujXR2ElkIT9/7J6bF/n\nab/fmeTZmlPUkgyRJ58H2YS/\n-----END PRIVATE KEY-----\n"
 }
 
+3.13 В консоли умной ВМ
+sudo nano /etc/systemd/system/worker.service
+вставляем
+[Unit]
+Description=Worker Service
+After=network.target
 
+[Service]
+User=ubuntu  # Замените на вашего пользователя
+WorkingDirectory=/home/ubuntu/your_project_path  # Путь к проекту свой
+ExecStart=/usr/bin/python3 worker_app.py
+Restart=always
+RestartSec=5s
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
 4.1 Запускаем тупой сервер командой python app.py и переходим по адресу http://<Публичный IPv4-адрес>:5000/
 надеюсь ура все работает 
